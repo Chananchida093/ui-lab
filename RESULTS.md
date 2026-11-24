@@ -39,7 +39,7 @@
 ## Part 1 Selenium IDE
 
 - ใช้ Node.js **v22.12.0** และ Side Runner **4.0.13** เล่นเทสต์ใน Chrome
-- Firefox Nightly **163.0a1** โหลด Selenium IDE **3.17.4** ได้ในโปรไฟล์ชั่วคราว แต่เครื่องมือควบคุมหน้าต่างหยุดเพราะยังรองรับเบราว์เซอร์นี้ไม่ได้ ขั้นอัดคลิกตามข้อ 1.2 และ 1.6 จึงยังค้างอยู่ ไฟล์ `.side` ในชุดนี้สร้างจากตารางคำสั่งของโจทย์แล้วทดสอบด้วย Side Runner
+- ครั้งแรกโหลด Selenium IDE **3.17.4** ใน Firefox Nightly **163.0a1** ได้ พอตรวจซ้ำกับ Firefox รุ่นปกติ **160.0.1** เครื่องมือควบคุมบน Windows ยังเข้าไปทำขั้นอัดคลิกไม่ได้ ขั้นอัดคลิกตามข้อ 1.2 และ 1.6 จึงยังค้างอยู่ ไฟล์ `.side` ในชุดนี้สร้างจากตารางคำสั่งของโจทย์แล้วทดสอบด้วย Side Runner
 - **1.4** ตั้งค่าที่คาดเป็น `Received` แล้วได้ `Actual value 'Received!' did not match 'Received' during assertText:id=message:Received` และ `Tests: 1 failed, 1 total` จากนั้นแก้กลับเป็น `Received!`
 - **1.5** ใช้ `xpath=//button[@type='submit']` แทน `css=.btn` ในตัวอย่างที่ตัวอัดเลือก เพราะคลาสหน้าตาใช้ร่วมกับปุ่มอื่นได้
 - **1.6** ไฟล์ที่รันมีคำสั่งรอช่องกรอกและผลแนะนำ ใช้ `addSelection` เลือก Knife และตั้ง `pizzaName` จากเวลาของแต่ละรอบ หลังได้ผลแนะนำ เทสต์อ่านข้อความแคลอรี แปลงเป็นตัวเลข แล้วเทียบกับ 600
@@ -49,13 +49,13 @@
 | 1 | Lab Pizza 20261124-205556 | 2 passed, 2 total | 21.111 วิ |
 | 2 | Lab Pizza 20261124-205700 | 2 passed, 2 total | 22.509 วิ |
 
-ดู [ข้อความจาก Side Runner](selenium-ide/evidence/side-runner.txt) สำหรับผลที่ตั้งให้ล้มเหลวและสองรอบที่ผ่าน
+ตรวจซ้ำกับ Chrome **158.0.8127.38** และ ChromeDriver **158.0.8127.88** ได้ `2 passed, 2 total` เวลา 11.438 วินาที ใช้ชื่อ Lab Pizza 20261124-232028 ดู [ข้อความจาก Side Runner](selenium-ide/evidence/side-runner.txt) สำหรับผลทุกรอบที่บันทึกไว้
 
 **1.7** [QP01customerTest.java](selenium-ide/QP01customerTest.java) มาจากตัวส่งออก Java/JUnit ของ Selenium ทางคำสั่ง รุ่น 4.0.13 ตัวอย่างบรรทัดที่ต้องแก้คือ `sendKeys("600")` เพราะต้องเรียก `clear()` เพื่อล้างค่า 1000 ที่เว็บใส่ไว้ก่อน บรรทัดตรวจชื่อพิซซ่าก็ต้องแก้เครื่องหมายคำพูดให้ Java อ่านค่าในตัวแปรได้ ไฟล์นี้เก็บผลเดิมจากตัวส่งออกไว้ตามแบบฝึก
 
 ## Part 4 Cypress
 
-ใช้ Node.js **v22.12.0**, npm **10.9.0** และ Cypress ทั้งตัวแพ็กเกจกับโปรแกรมเป็น **16.2.1**
+ตอนทำรอบแรกใช้ Node.js **v22.12.0**, npm **10.9.0** และ Cypress **16.2.1** ตอนตรวจซ้ำใช้ Cypress **16.3.0** ทั้งตัวแพ็กเกจกับโปรแกรม
 
 - **4.3** พอตั้งค่าที่คาดเป็น `Web Form` Cypress ขึ้น `Timed out retrying after 10000ms` เทียบค่าจริง `Web form` กับค่าที่คาด `Web Form` พอแก้เป็นตัวพิมพ์เล็ก เทสต์ส่งแบบฟอร์มผ่าน
 - ระหว่างทำ QP-01 เคยหา Advanced ด้วยรูปแบบที่ยึดหัวท้ายข้อความแล้วไม่เจอ เปลี่ยนไปหา label จากข้อความ Advanced แล้วไปต่อได้
@@ -69,7 +69,16 @@
 | 1 | ผ่าน 2/2 | 00:21 | Lab Pizza 20261124-205831 |
 | 2 | ผ่าน 2/2 | 00:26 | Lab Pizza 20261124-205955 |
 
-ดู [ผลในเทอร์มินัลทั้งสองรอบ](cypress/evidence/cypress-runs.txt) กับ [วิดีโอรอบล่าสุด](cypress/cypress/videos/) ส่วนภาพ QP-01 มีสามจุด ได้แก่ [ผลแนะนำ](cypress/cypress/screenshots/pizza-scenario.cy.js/qp01-step4-recommendation.png), [ข้อความให้ล็อกอิน](cypress/cypress/screenshots/pizza-scenario.cy.js/qp01-step5-login-needed.png) และ [รายการแอดมิน](cypress/cypress/screenshots/pizza-scenario.cy.js/qp01-step7-admin-list.png)
+พอ Chrome อัปเดตเป็นรุ่น 158, Cypress 16.2.1 รัน QP-01 ผ่าน แต่พอเริ่มไฟล์ Web Form โปรแกรมหยุดด้วยข้อความ `* is not a valid URL` เมื่อลองแยกรัน Web Form ก็ผ่าน จึงอัปเดตเป็น Cypress 16.3.0 ที่แก้ปัญหานี้ แล้วรันทั้งชุดใหม่สองรอบ [รายละเอียดจาก Cypress](https://docs.cypress.io/app/references/error-messages)
+
+| รอบตรวจซ้ำบน Chrome 158 | ผล | เวลารวม | ชื่อพิซซ่า | เครื่องมือ | แคลอรีต่อชิ้น |
+| --- | --- | ---: | --- | --- | ---: |
+| 1 | ผ่าน 2/2 | 00:19 | Lab Pizza 20261124-232328 | Scissors | 450 |
+| 2 | ผ่าน 2/2 | 00:17 | Lab Pizza 20261124-232409 | Pizza cutter | 450 |
+
+รอบล่าสุดพบ `Lab Pizza 20261124-232409 (tool=Pizza cutter, ingredients_number=5)` ในรายการแอดมิน
+
+ดู [ผลในเทอร์มินัลก่อนและหลังอัปเดต](cypress/evidence/cypress-runs.txt) กับ [วิดีโอรอบล่าสุด](cypress/cypress/videos/) ส่วนภาพ QP-01 มีสามจุด ได้แก่ [ผลแนะนำ](cypress/cypress/screenshots/pizza-scenario.cy.js/qp01-step4-recommendation.png), [ข้อความให้ล็อกอิน](cypress/cypress/screenshots/pizza-scenario.cy.js/qp01-step5-login-needed.png) และ [รายการแอดมิน](cypress/cypress/screenshots/pizza-scenario.cy.js/qp01-step7-admin-list.png)
 
 ## ## Part B คำถามท้ายแล็บ
 
@@ -79,7 +88,7 @@
 
 ### 2. ขั้น 7 เทียบอะไรกับอะไร
 
-ขั้นนี้เป็น consistency oracle หรือการดูว่าค่าจากสองหน้าตรงกันไหม ตัวอย่างรอบ Cypress ล่าสุด หน้าเว็บแนะนำ Pizza cutter แล้วก็เจอ Pizza cutter ในแถวของ Lab Pizza 20261124-205955 ถ้าหน้าแอดมินหยิบเครื่องมือจากพิซซ่าแถวอื่นมาแสดง เทสต์จะจับได้จากการค้นชื่อก่อนเทียบเครื่องมือ
+ขั้นนี้เป็น consistency oracle หรือการดูว่าค่าจากสองหน้าตรงกันไหม ตัวอย่างรอบ Cypress ล่าสุด หน้าเว็บแนะนำ Pizza cutter แล้วก็เจอ Pizza cutter ในแถวของ Lab Pizza 20261124-232409 ถ้าหน้าแอดมินหยิบเครื่องมือจากพิซซ่าแถวอื่นมาแสดง เทสต์จะจับได้จากการค้นชื่อก่อนเทียบเครื่องมือ
 
 ### 3. จะเช็กได้ยังไงว่าพิซซ่าเป็นมังสวิรัติจริง
 

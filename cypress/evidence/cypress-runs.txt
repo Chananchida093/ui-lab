@@ -20,3 +20,19 @@ Admin list | Lab Pizza 20261124-205955 (tool=Pizza cutter, ingredients_number=6)
   │ √  pizza-scenario.cy.js                     00:16        1        1        -        -        - │
   │ √  web-form.cy.js                           00:10        1        1        -        -        - │
     √  All specs passed!                        00:26        2        2        -        -        -
+
+ตรวจซ้ำหลังอัปเดตเป็น Cypress 16.3.0 บน Chrome 158.0.8127.38
+
+run1
+POST /api/pizza | Lab Pizza 20261124-232328 | Scissors | 450
+Admin list | Lab Pizza 20261124-232328 (tool=Scissors, ingredients_number=6) (newest)
+  │ √  pizza-scenario.cy.js                     00:16        1        1        -        -        - │
+  │ √  web-form.cy.js                           00:03        1        1        -        -        - │
+    √  All specs passed!                        00:19        2        2        -        -        -
+
+run2
+POST /api/pizza | Lab Pizza 20261124-232409 | Pizza cutter | 450
+Admin list | Lab Pizza 20261124-232409 (tool=Pizza cutter, ingredients_number=5)
+  │ √  pizza-scenario.cy.js                     00:13        1        1        -        -        - │
+  │ √  web-form.cy.js                           00:03        1        1        -        -        - │
+    √  All specs passed!                        00:17        2        2        -        -        -

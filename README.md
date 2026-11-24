@@ -26,12 +26,12 @@ $env:Path = (Split-Path -Parent $env:CHROMEDRIVER) + ';' + $env:Path
 npm.cmd ci
 ```
 
-รันสองเทสต์ใน Chrome ด้วยคำสั่งนี้
+รันสองเทสต์ใน Chrome ด้วยคำสั่งนี้ โปรเจกต์ใช้ Cypress 16.3.0 เพื่อให้รันต่อถึงไฟล์ที่สองได้บน Chrome 158 ขึ้นไป
 
 ```powershell
 npx.cmd cypress run --browser chrome
 ```
 
-ดู [ผลในเทอร์มินัลทั้งสองรอบ](cypress/evidence/cypress-runs.txt), [ภาพ QP-01 รอบล่าสุด](cypress/cypress/screenshots/pizza-scenario.cy.js/) และ [วิดีโอของสองเทสต์](cypress/cypress/videos/) หากรันใหม่ Cypress จะเก็บภาพและวิดีโอชุดล่าสุดไว้ในตำแหน่งเดิม
+ดู [ผลในเทอร์มินัลก่อนและหลังอัปเดต](cypress/evidence/cypress-runs.txt), [ภาพ QP-01 รอบล่าสุด](cypress/cypress/screenshots/pizza-scenario.cy.js/) และ [วิดีโอของสองเทสต์](cypress/cypress/videos/) หากรันใหม่ Cypress จะเก็บภาพและวิดีโอชุดล่าสุดไว้ในตำแหน่งเดิม
 
 ผลการลองจากหน้าเว็บและคำตอบท้ายแล็บอยู่ใน [RESULTS.md](RESULTS.md)

@@ -19,3 +19,10 @@ info: echo: Lab Pizza 20261124-205700
 info: Finished test QP-01 customer Success
 Tests:       2 passed, 2 total
 Time:        22.509 s
+
+ตรวจซ้ำบน Chrome 158.0.8127.38 และ ChromeDriver 158.0.8127.88
+info: Finished test web form Success
+info: echo: Lab Pizza 20261124-232028
+info: Finished test QP-01 customer Success
+Tests:       2 passed, 2 total
+Time:        11.438 s
