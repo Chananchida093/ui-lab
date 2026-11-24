@@ -1,0 +1,21 @@
+ข้อความที่คัดจากผลรัน Side Runner วันที่ 24 พฤศจิกายน 2026
+
+1.4 ลองตัดเครื่องหมายตกใจ
+info: Finished test web form Failure
+    Actual value 'Received!' did not match 'Received' during assertText:id=message:Received
+Tests:       1 failed, 1 total
+Time:        6.599 s
+
+1.6 รอบ 1
+info: Finished test web form Success
+info: echo: Lab Pizza 20261124-205556
+info: Finished test QP-01 customer Success
+Tests:       2 passed, 2 total
+Time:        21.111 s
+
+1.6 รอบ 2
+info: Finished test web form Success
+info: echo: Lab Pizza 20261124-205700
+info: Finished test QP-01 customer Success
+Tests:       2 passed, 2 total
+Time:        22.509 s

@@ -1,0 +1,318 @@
+{
+  "id": "00000038-fed0-41ab-820f-000000000056",
+  "version": "2.0",
+  "name": "ui-lab",
+  "url": "https://quickpizza.grafana.com/",
+  "tests": [
+    {
+      "id": "00000001-fed0-41ab-820f-000000000056",
+      "name": "web form",
+      "commands": [
+        {
+          "id": "00000002-fed0-41ab-820f-000000000056",
+          "comment": "ทดสอบว่าส่งแบบฟอร์มแล้วขึ้นข้อความยืนยัน",
+          "command": "open",
+          "target": "https://www.selenium.dev/selenium/web/web-form.html",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000003-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "setWindowSize",
+          "target": "1366x900",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000004-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "type",
+          "target": "id=my-text-id",
+          "targets": [],
+          "value": "Selenium IDE form demo"
+        },
+        {
+          "id": "00000005-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "select",
+          "target": "name=my-select",
+          "targets": [],
+          "value": "label=Two"
+        },
+        {
+          "id": "00000006-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "click",
+          "target": "xpath=//button[@type='submit']",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000007-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=message",
+          "targets": [],
+          "value": "Received!"
+        }
+      ]
+    },
+    {
+      "id": "00000008-fed0-41ab-820f-000000000056",
+      "name": "QP-01 customer",
+      "commands": [
+        {
+          "id": "00000009-fed0-41ab-820f-000000000056",
+          "comment": "QP-01 ขั้น 1 เปิดหน้าแรกและตรวจหัวข้อ",
+          "command": "open",
+          "target": "https://quickpizza.grafana.com/",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000010-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=h1",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "00000011-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertText",
+          "target": "css=h1",
+          "targets": [],
+          "value": "Looking to break out of your pizza routine?"
+        },
+        {
+          "id": "00000012-fed0-41ab-820f-000000000056",
+          "comment": "ขั้น 2 เปิด Advanced และรอช่องกรอก",
+          "command": "click",
+          "target": "xpath=//label[.//span[normalize-space()='Advanced']]",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000013-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "xpath=//label[normalize-space()='Max Calories per Slice']/preceding-sibling::input",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "00000014-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=select[multiple]",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "00000015-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=default-checkbox",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "00000016-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "css=input[id='pizza-name']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "00000017-fed0-41ab-820f-000000000056",
+          "comment": "ตั้งชื่อพิซซ่าจากเวลาเริ่มรอบ",
+          "command": "executeScript",
+          "target": "const date = new Date(); const pad = n => String(n).padStart(2, '0'); const day = [date.getFullYear(), pad(date.getMonth() + 1), pad(date.getDate())].join(''); const time = [date.getHours(), date.getMinutes(), date.getSeconds()].map(pad).join(''); return 'Lab Pizza ' + day + '-' + time;",
+          "targets": [],
+          "value": "pizzaName"
+        },
+        {
+          "id": "00000018-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "echo",
+          "target": "${pizzaName}",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000019-fed0-41ab-820f-000000000056",
+          "comment": "ขั้น 3 กรอกและตรวจค่าทั้งสี่ช่อง",
+          "command": "type",
+          "target": "xpath=//label[normalize-space()='Max Calories per Slice']/preceding-sibling::input",
+          "targets": [],
+          "value": "600"
+        },
+        {
+          "id": "00000020-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "waitForElementPresent",
+          "target": "css=select[multiple] option[value='Knife']",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "00000021-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "addSelection",
+          "target": "css=select[multiple]",
+          "targets": [],
+          "value": "label=Knife"
+        },
+        {
+          "id": "00000022-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "click",
+          "target": "id=default-checkbox",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000023-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "type",
+          "target": "css=input[id='pizza-name']",
+          "targets": [],
+          "value": "${pizzaName}"
+        },
+        {
+          "id": "00000024-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertValue",
+          "target": "xpath=//label[normalize-space()='Max Calories per Slice']/preceding-sibling::input",
+          "targets": [],
+          "value": "600"
+        },
+        {
+          "id": "00000025-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertSelectedLabel",
+          "target": "css=select[multiple]",
+          "targets": [],
+          "value": "Knife"
+        },
+        {
+          "id": "00000026-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertChecked",
+          "target": "id=default-checkbox",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000027-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertValue",
+          "target": "css=input[id='pizza-name']",
+          "targets": [],
+          "value": "${pizzaName}"
+        },
+        {
+          "id": "00000028-fed0-41ab-820f-000000000056",
+          "comment": "ขั้น 4 ตรวจชื่อ เครื่องมือ และแคลอรีต่อชิ้น",
+          "command": "click",
+          "target": "name=pizza-please",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000029-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "xpath=//*[@id='recommendations']//p[starts-with(normalize-space(), 'Name:')]",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "00000030-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertText",
+          "target": "xpath=//*[@id='recommendations']//p[starts-with(normalize-space(), 'Name:')]",
+          "targets": [],
+          "value": "Name: ${pizzaName}"
+        },
+        {
+          "id": "00000031-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertNotText",
+          "target": "xpath=//*[@id='recommendations']//p[starts-with(normalize-space(), 'Tool:')]",
+          "targets": [],
+          "value": "Tool: Knife"
+        },
+        {
+          "id": "00000032-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "storeText",
+          "target": "xpath=//*[@id='recommendations']//p[starts-with(normalize-space(), 'Calories per slice:')]",
+          "targets": [],
+          "value": "calories"
+        },
+        {
+          "id": "00000033-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "executeScript",
+          "target": "return parseInt(${calories}.split(':')[1], 10) <= 600;",
+          "targets": [],
+          "value": "caloriesOk"
+        },
+        {
+          "id": "00000034-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assert",
+          "target": "caloriesOk",
+          "targets": [],
+          "value": "true"
+        },
+        {
+          "id": "00000035-fed0-41ab-820f-000000000056",
+          "comment": "ขั้น 5 ให้คะแนนตอนยังไม่ได้ล็อกอิน",
+          "command": "click",
+          "target": "name=rate-5",
+          "targets": [],
+          "value": ""
+        },
+        {
+          "id": "00000036-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "waitForElementVisible",
+          "target": "id=rate-result",
+          "targets": [],
+          "value": "10000"
+        },
+        {
+          "id": "00000037-fed0-41ab-820f-000000000056",
+          "comment": "",
+          "command": "assertText",
+          "target": "id=rate-result",
+          "targets": [],
+          "value": "Please log in first."
+        }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "00000039-fed0-41ab-820f-000000000056",
+      "name": "Default Suite",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 90,
+      "tests": [
+        "00000001-fed0-41ab-820f-000000000056",
+        "00000008-fed0-41ab-820f-000000000056"
+      ]
+    }
+  ],
+  "urls": [
+    "https://quickpizza.grafana.com/",
+    "https://www.selenium.dev/selenium/web/web-form.html"
+  ],
+  "plugins": []
+}
