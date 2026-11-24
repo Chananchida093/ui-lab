@@ -1,38 +1,29 @@
-ข้อความที่คัดจากผลรัน Cypress วันที่ 24 พฤศจิกายน 2026
+ข้อความที่คัดจากผลรัน Cypress วันที่ 24 พฤศจิกายน 2026 (Cypress 16.3.0)
 
-4.3 ลองใส่ชื่อแท็บผิด
+4.3 ลองใส่ชื่อแท็บผิด (Web Form)
       Timed out retrying after 10000ms
       + expected - actual
       -'Web form'
       +'Web Form'
   │ ×  web-form.cy.js                           00:14        1        -        1        -        - │
 
-4.8 รอบ 1
-POST /api/pizza | Lab Pizza 20261124-205831 | Pizza cutter | 300
-Admin list | Lab Pizza 20261124-205831 (tool=Pizza cutter, ingredients_number=4) (newest)
-  │ √  pizza-scenario.cy.js                     00:17        1        1        -        -        - │
-  │ √  web-form.cy.js                           00:04        1        1        -        -        - │
-    √  All specs passed!                        00:21        2        2        -        -        -
-
-4.8 รอบ 2
-POST /api/pizza | Lab Pizza 20261124-205955 | Pizza cutter | 550
-Admin list | Lab Pizza 20261124-205955 (tool=Pizza cutter, ingredients_number=6)
-  │ √  pizza-scenario.cy.js                     00:16        1        1        -        -        - │
-  │ √  web-form.cy.js                           00:10        1        1        -        -        - │
-    √  All specs passed!                        00:26        2        2        -        -        -
-
-ตรวจซ้ำหลังอัปเดตเป็น Cypress 16.3.0 บน Chrome 158.0.8127.38
-
-run1
-POST /api/pizza | Lab Pizza 20261124-232328 | Scissors | 450
-Admin list | Lab Pizza 20261124-232328 (tool=Scissors, ingredients_number=6) (newest)
-  │ √  pizza-scenario.cy.js                     00:16        1        1        -        -        - │
-  │ √  web-form.cy.js                           00:03        1        1        -        -        - │
-    √  All specs passed!                        00:19        2        2        -        -        -
-
-run2
-POST /api/pizza | Lab Pizza 20261124-232409 | Pizza cutter | 450
-Admin list | Lab Pizza 20261124-232409 (tool=Pizza cutter, ingredients_number=5)
+4.8 รอบ 1 (Chrome 158 headless)
+POST /api/pizza | Lab Pizza 20261124-235048 | Scissors | 550
+Admin list | Lab Pizza 20261124-235048 (tool=Scissors, ingredients_number=6)
   │ √  pizza-scenario.cy.js                     00:13        1        1        -        -        - │
   │ √  web-form.cy.js                           00:03        1        1        -        -        - │
-    √  All specs passed!                        00:17        2        2        -        -        -
+    √  All specs passed!                        00:16        2        2        -        -        -
+
+4.8 รอบ 2 (Chrome 158 headless — ชุดภาพและวิดีโอที่เก็บในรีโป)
+POST /api/pizza | Lab Pizza 20261124-235135 | Pizza cutter | 500
+Admin list | Lab Pizza 20261124-235135 (tool=Pizza cutter, ingredients_number=7)
+  │ √  pizza-scenario.cy.js                     00:13        1        1        -        -        - │
+  │ √  web-form.cy.js                           00:03        1        1        -        -        - │
+    √  All specs passed!                        00:16        2        2        -        -        -
+
+4.9 (Optional) เบราว์เซอร์ที่สอง (Microsoft Edge 158 headless)
+POST /api/pizza | Lab Pizza 20261124-234956 | Pizza cutter | 450
+Admin list | Lab Pizza 20261124-234956 (tool=Pizza cutter, ingredients_number=6)
+  │ √  pizza-scenario.cy.js                     00:18        1        1        -        -        - │
+  │ √  web-form.cy.js                           00:03        1        1        -        -        - │
+    √  All specs passed!                        00:22        2        2        -        -        -

@@ -24,95 +24,89 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class QP01customerTest {
-private WebDriver driver;
-private Map<String, Object> vars;
-JavascriptExecutor js;
-
-@Before
-public void setUp() {
-  driver = new ChromeDriver();
-  js = (JavascriptExecutor) driver;
-  vars = new HashMap<String, Object>();
-}
-@After
-public void tearDown() {
-  driver.quit();
-}
+  private WebDriver driver;
+  private Map<String, Object> vars;
+  JavascriptExecutor js;
+  
+  @Before
+  public void setUp() {
+    driver = new ChromeDriver();
+    js = (JavascriptExecutor) driver;
+    vars = new HashMap<String, Object>();
+  }
+  @After
+  public void tearDown() {
+    driver.quit();
+  }
   @Test
   public void qP01customer() {
-    // QP-01 ขั้น 1 เปิดหน้าแรกและตรวจหัวข้อ
     driver.get("https://quickpizza.grafana.com/");
-{
-  WebDriverWait wait = new WebDriverWait(driver, 10);
-  // ขั้น 2 เปิด Advanced และรอช่องกรอก
-  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
-}
-assertThat(driver.findElement(By.cssSelector("h1")).getText(), is("Looking to break out of your pizza routine?"));
-driver.findElement(By.xpath("//label[.//span[normalize-space()=\'Advanced\']]")).click();
-{
-// ตั้งชื่อพิซซ่าจากเวลาเริ่มรอบ
-  WebDriverWait wait = new WebDriverWait(driver, 10);
-  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[normalize-space()=\'Max Calories per Slice\']/preceding-sibling::input")));
-  // ขั้น 3 กรอกและตรวจค่าทั้งสี่ช่อง
-}
-{
-  WebDriverWait wait = new WebDriverWait(driver, 10);
-  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select[multiple]")));
-}
-{
-  WebDriverWait wait = new WebDriverWait(driver, 10);
-  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("default-checkbox")));
-}
-// ขั้น 4 ตรวจชื่อ เครื่องมือ และแคลอรีต่อชิ้น
-{
-  WebDriverWait wait = new WebDriverWait(driver, 10);
-  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=\'pizza-name\']")));
-}
-vars.put("pizzaName", js.executeScript("const date = new Date(); const pad = n => String(n).padStart(2, '0'); const day = [date.getFullYear(), pad(date.getMonth() + 1), pad(date.getDate())].join(''); const time = [date.getHours(), date.getMinutes(), date.getSeconds()].map(pad).join(''); return 'Lab Pizza ' + day + '-' + time;"));
-System.out.println(vars.get("pizzaName").toString());
-driver.findElement(By.xpath("//label[normalize-space()=\'Max Calories per Slice\']/preceding-sibling::input")).sendKeys("600");
-// ขั้น 5 ให้คะแนนตอนยังไม่ได้ล็อกอิน
-{
-  WebDriverWait wait = new WebDriverWait(driver, 10);
-  wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("select[multiple] option[value=\'Knife\']")));
-}
-{
-  WebElement dropdown = driver.findElement(By.cssSelector("select[multiple]"));
-  dropdown.findElement(By.xpath("//option[. = 'Knife']")).click();
-}
-driver.findElement(By.id("default-checkbox")).click();
-driver.findElement(By.cssSelector("input[id=\'pizza-name\']")).sendKeys(vars.get("pizzaName").toString());
-{
-  String value = driver.findElement(By.xpath("//label[normalize-space()=\'Max Calories per Slice\']/preceding-sibling::input")).getAttribute("value");
-  assertThat(value, is("600"));
-}
-{
-  WebElement element = driver.findElement(By.cssSelector("select[multiple]"));
-  String value = element.getAttribute("value");
-  String locator = String.format("option[@value='%s']", value);
-  String selectedText = element.findElement(By.xpath(locator)).getText();
-  assertThat(selectedText, is("Knife"));
-}
-assertTrue(driver.findElement(By.id("default-checkbox")).isSelected());
-{
-  String value = driver.findElement(By.cssSelector("input[id=\'pizza-name\']")).getAttribute("value");
-  assertThat(value, is("vars.get("pizzaName").toString()"));
-}
-driver.findElement(By.name("pizza-please")).click();
-{
-  WebDriverWait wait = new WebDriverWait(driver, 10);
-  wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\'recommendations\']//p[starts-with(normalize-space(), \'Name:\')]")));
-}
-assertThat(driver.findElement(By.xpath("//*[@id=\'recommendations\']//p[starts-with(normalize-space(), \'Name:\')]")).getText(), is("Name: vars.get(\"pizzaName\").toString()"));
-assertThat(driver.findElement(By.xpath("//*[@id=\'recommendations\']//p[starts-with(normalize-space(), \'Tool:\')]")).getText(), is(not("Tool: Knife")));
-vars.put("calories", driver.findElement(By.xpath("//*[@id=\'recommendations\']//p[starts-with(normalize-space(), \'Calories per slice:\')]")).getText());
-vars.put("caloriesOk", js.executeScript("return parseInt(arguments[0].split(':')[1], 10) <= 600;", vars.get("calories")));
-assertEquals(vars.get("caloriesOk").toString(), "true");
-driver.findElement(By.name("rate-5")).click();
-{
-  WebDriverWait wait = new WebDriverWait(driver, 10);
-  wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rate-result")));
-}
-assertThat(driver.findElement(By.id("rate-result")).getText(), is("Please log in first."));
+    {
+      WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h1")));
+    }
+    assertThat(driver.findElement(By.cssSelector("h1")).getText(), is("Looking to break out of your pizza routine?"));
+    driver.findElement(By.xpath("//label[.//span[normalize-space()=\'Advanced\']]")).click();
+    {
+      WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[normalize-space()=\'Max Calories per Slice\']/../input")));
+    }
+    {
+      WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("select")));
+    }
+    {
+      WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("default-checkbox")));
+    }
+    {
+      WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input#pizza-name")));
+    }
+    vars.put("pizzaName", js.executeScript("const d = new Date(); const two = (n) => String(n).padStart(2, '0'); const day = d.getFullYear() + two(d.getMonth() + 1) + two(d.getDate()); const time = two(d.getHours()) + two(d.getMinutes()) + two(d.getSeconds()); return 'Lab Pizza ' + day + '-' + time;"));
+    System.out.println(String.valueOf(vars.get("pizzaName")));
+    driver.findElement(By.xpath("//label[normalize-space()=\'Max Calories per Slice\']/../input")).sendKeys("600");
+    {
+      WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//select/option[normalize-space()=\'Knife\']")));
+    }
+    {
+      WebElement dropdown = driver.findElement(By.cssSelector("select"));
+      dropdown.findElement(By.xpath("//option[. = 'Knife']")).click();
+    }
+    driver.findElement(By.id("default-checkbox")).click();
+    driver.findElement(By.cssSelector("input#pizza-name")).sendKeys(String.valueOf(vars.get("pizzaName")));
+    {
+      String value = driver.findElement(By.xpath("//label[normalize-space()=\'Max Calories per Slice\']/../input")).getAttribute("value");
+      assertThat(value, is("600"));
+    }
+    {
+      WebElement element = driver.findElement(By.cssSelector("select"));
+      String value = element.getAttribute("value");
+      String locator = String.format("option[@value='%s']", value);
+      String selectedText = element.findElement(By.xpath(locator)).getText();
+      assertThat(selectedText, is("Knife"));
+    }
+    assertTrue(driver.findElement(By.id("default-checkbox")).isSelected());
+    {
+      String value = driver.findElement(By.cssSelector("input#pizza-name")).getAttribute("value");
+      assertThat(value, is(String.valueOf(vars.get("pizzaName"))));
+    }
+    driver.findElement(By.name("pizza-please")).click();
+    {
+      WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[starts-with(., \'Name:\')]")));
+    }
+    assertThat(driver.findElement(By.xpath("//p[starts-with(., \'Name:\')]")).getText(), is("Name: " + String.valueOf(vars.get("pizzaName"))));
+    assertThat(driver.findElement(By.xpath("//p[starts-with(., \'Tool:\')]")).getText(), is(not("Tool: Knife")));
+    vars.put("calories", driver.findElement(By.xpath("//p[starts-with(., \'Calories per slice:\')]")).getText());
+    vars.put("caloriesOk", js.executeScript("return parseInt(arguments[0].split(':')[1]) <= 600;", vars.get("calories")));
+    assertEquals(String.valueOf(vars.get("caloriesOk")), "true");
+    driver.findElement(By.name("rate-5")).click();
+    {
+      WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("rate-result")));
+    }
+    assertThat(driver.findElement(By.id("rate-result")).getText(), is("Please log in first."));
   }
 }

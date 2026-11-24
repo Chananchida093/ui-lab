@@ -1,37 +1,26 @@
-# UI Lab | Selenium IDE และ Cypress
+# UI Lab (Selenium IDE & Cypress)
 
-ใช้ **Selenium IDE (Part 1)** กับ **Cypress (Part 4)** ลองส่งแบบฟอร์มของ Selenium และทดสอบ QuickPizza ฝั่งลูกค้า ใน Cypress ทำ QP-01 ต่อถึงหน้าแอดมินเพื่อเทียบเครื่องมือกับคำแนะนำที่ลูกค้าเห็น
+งานแล็บนี้เลือกทำ 2 เครื่องมือคือ Part 1 (Selenium IDE) กับ Part 4 (Cypress) โดยใช้ทดสอบหน้าฟอร์มของ Selenium และเคส QP-01 บนเว็บ QuickPizza ตั้งแต่ฝั่งลูกค้าไปจนถึงหน้าแอดมิน
 
-## Selenium IDE
+## selenium-ide (Part 1)
 
-โฟลเดอร์ `selenium-ide/` มี [ไฟล์ ui-lab.side](selenium-ide/ui-lab.side) สำหรับหน้าแบบฟอร์มและ QP-01 ขั้น 1–5 พร้อม [ตัวอย่าง Java ที่ส่งออก](selenium-ide/QP01customerTest.java) ใช้ Chrome และ Node.js 22 ขึ้นไป เปิด PowerShell ในโฟลเดอร์ `selenium-ide/` แล้วรัน
+ในโฟลเดอร์ `selenium-ide/` มีไฟล์ [ui-lab.side](selenium-ide/ui-lab.side) ที่เก็บเทสต์หน้าฟอร์มและ QP-01 ขั้น 1–5 กับไฟล์ Java ที่ export ออกมาชื่อ [QP01customerTest.java](selenium-ide/QP01customerTest.java) รวมถึงผลรันที่เซฟไว้ใน [side-runner.txt](selenium-ide/evidence/side-runner.txt)
 
-```powershell
-npx.cmd --yes selenium-side-runner@4.0.13 -w 1 -c 'browserName=chrome' ui-lab.side
-```
-
-ถ้ามี ChromeDriver หลายรุ่น ให้เพิ่มโฟลเดอร์ของรุ่นที่ตรงกับ Chrome ไว้หน้า `PATH` ก่อนรัน ตัวอย่างนี้ใช้ตำแหน่งจาก `CHROMEDRIVER` ที่ตั้งไว้ใน Part 0
+เวลาจะรันให้เปิด PowerShell เข้าไปในโฟลเดอร์ `selenium-ide/` เพิ่มโฟลเดอร์ของ ChromeDriver ไว้หน้า `PATH` แล้วรันคำสั่งนี้
 
 ```powershell
-$env:Path = (Split-Path -Parent $env:CHROMEDRIVER) + ';' + $env:Path
+$env:Path = (Split-Path $env:CHROMEDRIVER) + ";" + $env:Path
+npx --yes selenium-side-runner@4.0.13 ui-lab.side
 ```
 
-ดู [ผลรัน Side Runner](selenium-ide/evidence/side-runner.txt) ส่วนการอัดคลิกตามโจทย์ต้องใช้ [Selenium IDE ใน Firefox](https://addons.mozilla.org/firefox/addon/selenium-ide/) สถานะของขั้นนี้บันทึกไว้ในผลแล็บ
+## cypress (Part 4)
 
-## Cypress
+ในโฟลเดอร์ `cypress/` มีไฟล์เทสต์ `web-form.cy.js` กับ `pizza-scenario.cy.js` (ทำ QP-01 ครบทั้ง 7 ขั้นและดักดู request จาก `/api/pizza`) กับคำสั่งล็อกอินแอดมินที่เขียนเพิ่มไว้ใน `cypress/support/commands.js` ส่วนหลักฐานการรันเก็บไว้ใน [cypress-runs.txt](cypress/evidence/cypress-runs.txt), [โฟลเดอร์รูปภาพ](cypress/cypress/screenshots/pizza-scenario.cy.js/) และ [โฟลเดอร์วิดีโอ](cypress/cypress/videos/)
 
-โฟลเดอร์ `cypress/` มีเทสต์หน้าแบบฟอร์มกับ QP-01 ครบเจ็ดขั้น คำสั่งล็อกอินแอดมินอยู่ใน `cypress/support/commands.js` ภายในโปรเจกต์ เปิด PowerShell ในโฟลเดอร์ `cypress/` ด้านนอก แล้วติดตั้งแพ็กเกจครั้งแรก
+รันครั้งแรกให้เข้าไปในโฟลเดอร์ `cypress/` แล้วลงแพ็กเกจด้วย `npm ci` จากนั้นสั่งรันทั้งสองไฟล์บน Chrome ด้วยคำสั่งนี้
 
 ```powershell
-npm.cmd ci
+npx cypress run --browser chrome
 ```
 
-รันสองเทสต์ใน Chrome ด้วยคำสั่งนี้ โปรเจกต์ใช้ Cypress 16.3.0 เพื่อให้รันต่อถึงไฟล์ที่สองได้บน Chrome 158 ขึ้นไป
-
-```powershell
-npx.cmd cypress run --browser chrome
-```
-
-ดู [ผลในเทอร์มินัลก่อนและหลังอัปเดต](cypress/evidence/cypress-runs.txt), [ภาพ QP-01 รอบล่าสุด](cypress/cypress/screenshots/pizza-scenario.cy.js/) และ [วิดีโอของสองเทสต์](cypress/cypress/videos/) หากรันใหม่ Cypress จะเก็บภาพและวิดีโอชุดล่าสุดไว้ในตำแหน่งเดิม
-
-ผลการลองจากหน้าเว็บและคำตอบท้ายแล็บอยู่ใน [RESULTS.md](RESULTS.md)
+รายละเอียดการเตรียมเครื่อง ผลการลองแต่ละขั้น และคำตอบคำถามท้ายแล็บอยู่ใน [RESULTS.md](RESULTS.md)
